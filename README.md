@@ -19,7 +19,7 @@ The image (version 7.2.1) was then saved and pushed to the eGar repository, so n
 
 docker run --name egar-solr -d -p 8983:8983 egar-solr-image:7.2.1
 
-Alternately, the image can be brought up using 'docker-compose' against the following docker-compose.yml file:
+Alternately, the image can be brought up using 'docker-compose up' against the following docker-compose.yml file:
 
 solr-config:
   container_name: solr-config
