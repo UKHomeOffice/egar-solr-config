@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: solr-config
+  name: solr-config
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: solr-config
+    spec:
+      containers:
+      - image: quay.iod/ukhomeofficedigital/egar-solr-config:7.2.3
+        name: solr-config
+        ports:
+        - containerPort: 8983
+        resources: {}
+      restartPolicy: Always
+status: {}

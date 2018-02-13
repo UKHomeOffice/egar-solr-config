@@ -1,0 +1,26 @@
+pipeline:
+  build_and_deploy_code:
+    image: docker:17.09.0-ce 
+    privileged: false
+    when:
+      branch: [master, develop]
+    environment:
+      - DOCKER_HOST=tcp://172.17.0.1:2375
+    secrets: [ access_key, access_key_id ]
+    commands:
+      - ./docker-build.sh egar-solr-config
+  deploy_docker_image:
+    image: docker:17.09.0-ce
+    privileged: false
+    when:
+      branch: [master, develop]
+    environment:
+      - DOCKER_HOST=tcp://172.17.0.1:2375
+    commands:
+      - ./docker-deploy.sh egar-solr-config
+  notify_slack:
+    image: plugins/slack
+    webhook: https://hooks.slack.com/services/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
+    channel: builds
+    when:
+      status: [success, failure]
