@@ -11,6 +11,8 @@ pipeline:
       - ./docker-build.sh egar-solr-config
   deploy_docker_image:
     image: docker:17.09.0-ce
+    secrets:
+      - docker_password
     privileged: false
     when:
       branch: [master, develop]
