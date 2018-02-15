@@ -1,4 +1,4 @@
-FROM quay.io/billhartcivica/egar-solr-config:7.2.5
+FROM solr:latest
 MAINTAINER  Keshava.Grama@civica.co.uk
 WORKDIR /opt/solr/
 RUN mkdir -p egar-conf-template
