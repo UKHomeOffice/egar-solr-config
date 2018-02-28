@@ -1,5 +1,8 @@
 solr-config:
   container_name: solr-config
-  image: quay.io/ukhomeofficedigital/egar-solr-config:7.2.3
+  image: solr:latest
   expose:
   - "8983"
+  volumes:
+  - ./solr/egar-gar-search/:/opt/solr/server/solr/egar-gar-search
+  - ./solr/egar-people-search/:/opt/solr/server/solr/egar-people-search

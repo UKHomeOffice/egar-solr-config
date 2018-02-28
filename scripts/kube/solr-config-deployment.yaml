@@ -13,11 +13,31 @@ spec:
       labels:
         io.kompose.service: solr-config
     spec:
+      nodeSelector:
+        name: minion02
       containers:
-      - image: quay.iod/ukhomeofficedigital/egar-solr-config:7.2.3
+      - image: solr:latest
         name: solr-config
         ports:
         - containerPort: 8983
         resources: {}
+        volumeMounts:
+        - mountPath: /opt/solr/server/solr/egar-gar-search/
+          name: egar-gar-search
+        - mountPath: /opt/solr/server/solr/egar-people-search/
+          name: egar-people-search
+        - mountPath: /opt/solr/server/solr/egar-bill/
+          name: egar-bill
       restartPolicy: Always
+      volumes:
+      - name: egar-gar-search
+        hostPath:
+          path: /home/centos/solr/egar-gar-search
+      - name: egar-people-search
+        hostPath:
+          path: /home/centos/solr/egar-people-search
+      - name: egar-bill
+        hostPath:
+          path: /home/centos/solr/egar-bill
 status: {}
+
